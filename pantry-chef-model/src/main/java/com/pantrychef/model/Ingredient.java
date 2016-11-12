@@ -2,47 +2,19 @@ package com.pantrychef.model;
 
 import java.util.List;
 
-public class Ingredient extends Base {
+import org.immutables.value.Value;
+
+@Value.Immutable
+public abstract class Ingredient extends Base {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3467041004296560644L;
 	
-	private String name;
-	private String description;
-	private String about;
-	private Tag mainTag;
-	private List<Tag> tags;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getAbout() {
-		return about;
-	}
-	public void setAbout(String about) {
-		this.about = about;
-	}
-	public Tag getMainTag() {
-		return mainTag;
-	}
-	public void setMainTag(Tag mainTag) {
-		this.mainTag = mainTag;
-	}
-	public List<Tag> getTags() {
-		return tags;
-	}
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
+	abstract String name();
+	abstract String description();
+	abstract String about();
+	abstract Tag mainTag();
+	abstract List<Tag> tags();
 }

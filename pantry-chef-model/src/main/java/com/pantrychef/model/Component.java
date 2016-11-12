@@ -3,6 +3,9 @@ package com.pantrychef.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.immutables.value.Value;
+
+@Value.Immutable
 public abstract class Component extends Base {
 
 	/**
@@ -10,43 +13,10 @@ public abstract class Component extends Base {
 	 */
 	private static final long serialVersionUID = 1423195038668544717L;
 
-	private BigDecimal quantity;
-	private Measure measure;
-	private List<String> qualifiers;
-	private List<Substitute> substitutes;
-	private Integer order;
-
-	public abstract String getName();
-	
-	BigDecimal getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
-	public Measure getMeasure() {
-		return measure;
-	}
-	public void setMeasure(Measure measure) {
-		this.measure = measure;
-	}
-	public List<String> getQualifiers() {
-		return qualifiers;
-	}
-	public void setQualifiers(List<String> qualifiers) {
-		this.qualifiers = qualifiers;
-	}
-	public List<Substitute> getSubstitutes() {
-		return substitutes;
-	}
-	public void setSubstitutes(List<Substitute> substitutes) {
-		this.substitutes = substitutes;
-	}
-	public Integer getOrder() {
-		return order;
-	}
-	public void setOrder(Integer order) {
-		this.order = order;
-	}
-	
+	abstract BigDecimal quantity();
+	abstract Measure measure();
+	abstract List<String> qualifiers();
+	abstract List<Substitute> substitutes();
+	abstract Integer order();
+	abstract String name();
 }

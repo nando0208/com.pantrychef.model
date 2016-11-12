@@ -4,33 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Base implements Serializable {
+import org.immutables.value.Value;
+
+@Value.Immutable
+public abstract class Base implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6913018526390165420L;
-
-	private UUID id;
-	private Date createdTimestamp;
-	private Date lastUpdated;
+	private static final long serialVersionUID = -3512503608094343023L;
 	
-	public UUID getId() {
-		return id;
-	}
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	public Date getCreatedTimestamp() {
-		return createdTimestamp;
-	}
-	public void setCreatedTimestamp(Date createdTimestamp) {
-		this.createdTimestamp = createdTimestamp;
-	}
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
+	abstract UUID id();
+	abstract Date createdTimestamp();
+	abstract Date lastUpdated();
+	
 }
