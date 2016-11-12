@@ -1,28 +1,23 @@
 package com.pantrychef.model;
 
-public class CompositeComponent extends Component {
+import org.immutables.value.Value;
+
+@Value.Immutable
+public abstract class CompositeComponent extends Component {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5610374833473746415L;
 
-	private Recipe recipe;
+	abstract Recipe recipe();
 	
 	@Override
-	public String getName() {
+	public String name() {
 		String name = "";
-		if(recipe != null && recipe.getName() != null){
-			name = recipe.getName();
+		if(recipe() != null && recipe().name() != null){
+			name = recipe().name();
 		}
 		return name;
-	}
-
-	public Recipe getRecipe() {
-		return recipe;
-	}
-
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
 	}
 }

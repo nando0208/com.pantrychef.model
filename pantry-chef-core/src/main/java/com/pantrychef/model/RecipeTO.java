@@ -1,14 +1,9 @@
 package com.pantrychef.model;
 
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import org.hibernate.annotations.Type;
-
-import com.pantrychef.utils.Mapper;
 
 @Entity(name = "recipes")
 public class RecipeTO extends BaseTO {
@@ -21,12 +16,10 @@ public class RecipeTO extends BaseTO {
 	private String name;
 	private String description;
 	private String about;
-	@Column(columnDefinition = "jsonb")
-    @Type(type="jsonb")
-	private String components;
 	private String yeld;
-	@Column(name="preparation_time")
-	private String preparationTime;
+	private String difficulty;
+	@Column(name="preparation_time_in_minutes")
+	private String preparationTimeInMinutes;
 	private String author;
 	private UUID provider;
 	
@@ -48,23 +41,11 @@ public class RecipeTO extends BaseTO {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	public List<UUID> getComponents() {
-		return Mapper.getInstance().readUUIDList(components);
-	}
-	public void setComponents(List<UUID> components) {
-		this.components = Mapper.getInstance().write(components);
-	}
 	public String getYeld() {
 		return yeld;
 	}
 	public void setYeld(String yeld) {
 		this.yeld = yeld;
-	}
-	public String getPreparationTime() {
-		return preparationTime;
-	}
-	public void setPreparationTime(String preparationTime) {
-		this.preparationTime = preparationTime;
 	}
 	public String getAuthor() {
 		return author;
@@ -77,5 +58,17 @@ public class RecipeTO extends BaseTO {
 	}
 	public void setProvider(UUID provider) {
 		this.provider = provider;
+	}
+	public String getDifficulty() {
+		return difficulty;
+	}
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
+	public String getPreparationTimeInMinutes() {
+		return preparationTimeInMinutes;
+	}
+	public void setPreparationTimeInMinutes(String preparationTimeInMinutes) {
+		this.preparationTimeInMinutes = preparationTimeInMinutes;
 	}
 }
