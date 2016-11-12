@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.immutables.value.Value;
 
-@Value.Immutable
 public abstract class Base implements Serializable {
 
 	/**
