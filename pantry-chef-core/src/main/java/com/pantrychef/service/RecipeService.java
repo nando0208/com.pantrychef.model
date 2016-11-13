@@ -26,7 +26,7 @@ public class RecipeService {
 		this.componentService = componentService;
 	}
 	
-	private RecipeTO get(UUID id){
+	private RecipeTO fetch(UUID id){
 		return repository.findOne(id);
 	}
 	
@@ -34,13 +34,13 @@ public class RecipeService {
 		List<UUID> recipeIds = componentService.findRecipes(components);
 		List<Recipe> recipes = recipeIds
 				.stream()
-				.map(id -> get(id).build())
+				.map(id -> fetch(id).build())
 				.collect(Collectors.toList());
 		return recipes;
 	}
 	
-	public Recipe fetch(UUID id){
-		Recipe recipe = get(id).build();
+	public Recipe get(UUID id){
+		Recipe recipe = fetch(id).build();
 		List<Component> components = componentService.findComponents(recipe);
 		recipe = ImmutableRecipe
 				.builder()
