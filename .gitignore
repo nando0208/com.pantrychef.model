@@ -15,3 +15,10 @@ hs_err_pid*
 target
 .idea
 *.iml
+
+logs/
+.settings
+pantry-chef-model/.settings
+pantry-chef-core/.settings
+pantry-chef-model/target
+pantry-chef-core/target
