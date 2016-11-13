@@ -1,6 +1,8 @@
 package com.pantrychef.model;
 
+import java.math.BigDecimal;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,7 @@ public class RecipeTO extends BaseTO {
 	private String yeld;
 	private String difficulty;
 	@Column(name="preparation_time_in_minutes")
-	private String preparationTimeInMinutes;
+	private Double preparationTimeInMinutes;
 	private String author;
 	private UUID provider;
 	
@@ -65,10 +67,27 @@ public class RecipeTO extends BaseTO {
 	public void setDifficulty(String difficulty) {
 		this.difficulty = difficulty;
 	}
-	public String getPreparationTimeInMinutes() {
+	public Double getPreparationTimeInMinutes() {
 		return preparationTimeInMinutes;
 	}
-	public void setPreparationTimeInMinutes(String preparationTimeInMinutes) {
+	public void setPreparationTimeInMinutes(Double preparationTimeInMinutes) {
 		this.preparationTimeInMinutes = preparationTimeInMinutes;
+	}
+	
+	public Recipe build(){
+		Recipe recipe = ImmutableRecipe
+				.builder()
+				.id(getId())
+				.description(getDescription())
+				.name(getName())
+				.about(getAbout())
+				.preparationTime(new BigDecimal(getPreparationTimeInMinutes()).setScale(2))
+				.yeld(getYeld())
+				.author(getAuthor())
+				.lastUpdated(getLastUpdated())
+				.createdTimestamp(getCreatedTimestamp())
+				.unit(TimeUnit.MINUTES)
+				.build();
+		return recipe;
 	}
 }

@@ -1,6 +1,8 @@
 package com.pantrychef.model;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.immutables.value.Value;
 
@@ -14,5 +16,10 @@ public abstract class Recipe extends Base {
 
 	abstract String name();
 	abstract String description();
+	abstract String about();
 	abstract List<Component> components();
+	abstract String yeld();
+	abstract BigDecimal preparationTime();
+	abstract TimeUnit unit();
+	abstract String author();
 }
