@@ -1,18 +1,17 @@
 package com.pantrychef.model;
 
-import java.util.List;
-import java.util.UUID;
+import com.pantrychef.utils.Mapper;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.List;
+import java.util.UUID;
 
-import com.pantrychef.utils.Mapper;
-
-@Entity(name="ingredients")
+@Entity(name = "ingredients")
 public class IngredientTO extends BaseTO {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 5620092402195950733L;
 
@@ -28,24 +27,31 @@ public class IngredientTO extends BaseTO {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getAbout() {
         return about;
     }
+
     public void setAbout(String about) {
         this.about = about;
     }
+
     public List<UUID> getTags() {
         return Mapper.getInstance().readUUIDList(tags);
     }
+
     public void setTags(List<UUID> tags) {
         this.tags = Mapper.getInstance().write(tags);
     }

@@ -25,7 +25,7 @@ public class InfoConfiguration {
         env.getPropertySources().addFirst(new PropertiesPropertySource("extra-info-props", props));
     }
 
-    private String getVersion(){
+    private String getVersion() {
         String version = null;
 
         Package aPackage = getClass().getPackage();

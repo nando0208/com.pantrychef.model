@@ -29,8 +29,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"com.pantrychef"})
 public class PantryChefServerApplication {
 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(PantryChefServerApplication.class, args);
-	}
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(PantryChefServerApplication.class, args);
+    }
 
 }

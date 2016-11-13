@@ -1,18 +1,14 @@
 package com.pantrychef.model;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
 
-@Entity(name="measures")
-@Inheritance
-@DiscriminatorColumn(name = "TYPE")
+@Entity(name = "measures")
 public class MeasureTO extends BaseTO {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -596205517167777773L;
-
+    String code;
     private String name;
     private String abbreviation;
 
@@ -22,9 +18,8 @@ public class MeasureTO extends BaseTO {
         this.code = code;
     }
 
-    public MeasureTO() {}
-
-    String code;
+    public MeasureTO() {
+    }
 
     public String getName() {
         return name;

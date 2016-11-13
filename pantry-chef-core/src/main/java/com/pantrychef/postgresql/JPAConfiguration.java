@@ -1,9 +1,6 @@
 package com.pantrychef.postgresql;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,86 +14,88 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.zaxxer.hikari.HikariDataSource;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.pantrychef.repository")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class JPAConfiguration {
-	
-	@Value("${database.url}")
-	private String databaseUrl;
-	
-	@Value("${database.username}")
-	private String databaseUsername;
-	
-	@Value("${database.password}")
-	private String databasePassword;
-	
-	@Bean
-	public DataSource dataSource() {
-		HikariDataSource dataSource = new HikariDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUsername(databaseUsername);
-		dataSource.setPassword(databasePassword);	  
-		dataSource.setJdbcUrl(databaseUrl);
-		dataSource.setMaximumPoolSize(10);
-		dataSource.setMinimumIdle(10);
-		dataSource.setPoolName("pantrychef-core-pool");
-		dataSource.setConnectionTimeout(20000);
-		dataSource.setLeakDetectionThreshold(10000);		
-		//dataSource.setMetricRegistry(metricRegistry);
-		return dataSource;
-	}
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("com.pantrychef.model");
-		entityManagerFactoryBean.setJpaProperties(buildHibernateProperties());
-		entityManagerFactoryBean.setJpaProperties(new Properties() {
-			private static final long serialVersionUID = 1L;
-			{
-				put("hibernate.current_session_context_class", SpringSessionContext.class.getName());
-			}
-		});
-		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter() {
-			{
-				setDatabase(Database.POSTGRESQL);
-			}
-		});
-		return entityManagerFactoryBean;
-	}
+    @Value("${database.url}")
+    private String databaseUrl;
 
-	protected Properties buildHibernateProperties() {
-		Properties hibernateProperties = new Properties();
+    @Value("${database.username}")
+    private String databaseUsername;
 
-		hibernateProperties.setProperty("hibernate.dialect", JsonPostgreSQLDialect.class.getCanonicalName());
-		hibernateProperties.setProperty("hibernate.show_sql", "true");
-		hibernateProperties.setProperty("hibernate.use_sql_comments", "false");
-		hibernateProperties.setProperty("hibernate.format_sql", "false");
+    @Value("${database.password}")
+    private String databasePassword;
 
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
-		hibernateProperties.setProperty("hibernate.generate_statistics", "false");
-		hibernateProperties.setProperty("javax.persistence.validation.mode", "none");
-		hibernateProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
+    @Bean
+    public DataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUsername(databaseUsername);
+        dataSource.setPassword(databasePassword);
+        dataSource.setJdbcUrl(databaseUrl);
+        dataSource.setMaximumPoolSize(10);
+        dataSource.setMinimumIdle(10);
+        dataSource.setPoolName("pantrychef-core-pool");
+        dataSource.setConnectionTimeout(20000);
+        dataSource.setLeakDetectionThreshold(10000);
+        //dataSource.setMetricRegistry(metricRegistry);
+        return dataSource;
+    }
 
-		// Audit History flags
-		hibernateProperties.setProperty("org.hibernate.envers.store_data_at_delete", "true");
-		hibernateProperties.setProperty("org.hibernate.envers.global_with_modified_flag", "true");
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.pantrychef.model");
+        entityManagerFactoryBean.setJpaProperties(buildHibernateProperties());
+        entityManagerFactoryBean.setJpaProperties(new Properties() {
+            private static final long serialVersionUID = 1L;
 
-		return hibernateProperties;
-	}
+            {
+                put("hibernate.current_session_context_class", SpringSessionContext.class.getName());
+            }
+        });
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter() {
+            {
+                setDatabase(Database.POSTGRESQL);
+            }
+        });
+        return entityManagerFactoryBean;
+    }
 
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-		return new JpaTransactionManager();
-	}
+    protected Properties buildHibernateProperties() {
+        Properties hibernateProperties = new Properties();
 
-	@Bean
-	public TransactionTemplate transactionTemplate() {
-		return new TransactionTemplate(transactionManager());
-	}
+        hibernateProperties.setProperty("hibernate.dialect", JsonPostgreSQLDialect.class.getCanonicalName());
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.use_sql_comments", "false");
+        hibernateProperties.setProperty("hibernate.format_sql", "false");
+
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+        hibernateProperties.setProperty("hibernate.generate_statistics", "false");
+        hibernateProperties.setProperty("javax.persistence.validation.mode", "none");
+        hibernateProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
+
+        // Audit History flags
+        hibernateProperties.setProperty("org.hibernate.envers.store_data_at_delete", "true");
+        hibernateProperties.setProperty("org.hibernate.envers.global_with_modified_flag", "true");
+
+        return hibernateProperties;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager();
+    }
+
+    @Bean
+    public TransactionTemplate transactionTemplate() {
+        return new TransactionTemplate(transactionManager());
+    }
 
 }

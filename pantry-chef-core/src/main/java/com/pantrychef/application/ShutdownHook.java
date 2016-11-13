@@ -11,7 +11,8 @@ public class ShutdownHook implements ApplicationListener<ContextClosedEvent> {
 
     private Logger logger = Logger.getLogger(ShutdownHook.class);
 
-    @Override public void onApplicationEvent(ContextClosedEvent event) {
+    @Override
+    public void onApplicationEvent(ContextClosedEvent event) {
 
         logger.info("Stopping thread pools ...");
 

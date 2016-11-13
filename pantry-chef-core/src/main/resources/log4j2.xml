@@ -1,34 +1,36 @@
-	<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-	<Properties>
-		<Property name="PID">????</Property>
-		<Property name="DEFAULT_PATTERN">[%level] [%date{ISO8601}] log4j%X{context} - $${sys:PID} [%t] -- %c{1}.%L : %m%n</Property>
-		<Property name="MICRO_SERVICE_HOME">.</Property>
-		<Property name="LOG_FILE">${sys:MICRO_SERVICE_HOME}/logs/service.log</Property>
-		<!-- DEFAULT SENTRY DSN: no operation -->
-	</Properties>
-	<Appenders>
-		<Console name="CONSOLE" target="SYSTEM_OUT">
-			<PatternLayout pattern="${DEFAULT_PATTERN}" />
-		</Console>
-		<File name="FILE" fileName="${sys:LOG_FILE}">
-			<PatternLayout pattern="${DEFAULT_PATTERN}" />
-		</File>
-		<Async name="ASYNC" includeLocation="true">
-			<AppenderRef ref="FILE" />
-			<AppenderRef ref="CONSOLE" />
-		</Async>
-	</Appenders>
-	
-	<Loggers>
-		<Root level="WARN">
-			<AppenderRef ref="ASYNC" />
-		</Root>
-		<Logger name="com.eam" level="DEBUG"/>
-		<Logger name="com.eam.helpers" level="ERROR"/>
-		<Logger name="org.springframework" level="WARN"/>
-		<Logger name="org.springframework.boot" level="INFO"/>
-		<Logger name="com.amazonaws" level="WARN"/>
-		<Logger name="org.hibernate" level="WARN"/>
-	</Loggers>
+    <Properties>
+        <Property name="PID">????</Property>
+        <Property name="DEFAULT_PATTERN">[%level] [%date{ISO8601}] log4j%X{context} - $${sys:PID} [%t] -- %c{1}.%L :
+            %m%n
+        </Property>
+        <Property name="MICRO_SERVICE_HOME">.</Property>
+        <Property name="LOG_FILE">${sys:MICRO_SERVICE_HOME}/logs/service.log</Property>
+        <!-- DEFAULT SENTRY DSN: no operation -->
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${DEFAULT_PATTERN}"/>
+        </Console>
+        <File name="FILE" fileName="${sys:LOG_FILE}">
+            <PatternLayout pattern="${DEFAULT_PATTERN}"/>
+        </File>
+        <Async name="ASYNC" includeLocation="true">
+            <AppenderRef ref="FILE"/>
+            <AppenderRef ref="CONSOLE"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Root level="WARN">
+            <AppenderRef ref="ASYNC"/>
+        </Root>
+        <Logger name="com.eam" level="DEBUG"/>
+        <Logger name="com.eam.helpers" level="ERROR"/>
+        <Logger name="org.springframework" level="WARN"/>
+        <Logger name="org.springframework.boot" level="INFO"/>
+        <Logger name="com.amazonaws" level="WARN"/>
+        <Logger name="org.hibernate" level="WARN"/>
+    </Loggers>
 </Configuration>

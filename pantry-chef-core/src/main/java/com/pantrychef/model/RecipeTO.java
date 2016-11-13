@@ -1,17 +1,16 @@
 package com.pantrychef.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 
 @Entity(name = "recipes")
 public class RecipeTO extends BaseTO {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 7741409539824250727L;
 
@@ -20,13 +19,13 @@ public class RecipeTO extends BaseTO {
     private String about;
     private String yeld;
     private String difficulty;
-    @Column(name="preparation_time_in_minutes")
+    @Column(name = "preparation_time_in_minutes")
     private Double preparationTimeInMinutes;
     private String author;
     private UUID provider;
 
     //TODO handle provider
-    public RecipeTO(Recipe recipe){
+    public RecipeTO(Recipe recipe) {
         setId(recipe.id());
         setCreatedTimestamp(recipe.createdTimestamp());
         setLastUpdated(recipe.lastUpdated());
@@ -43,53 +42,68 @@ public class RecipeTO extends BaseTO {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getAbout() {
         return about;
     }
+
     public void setAbout(String about) {
         this.about = about;
     }
+
     public String getYeld() {
         return yeld;
     }
+
     public void setYeld(String yeld) {
         this.yeld = yeld;
     }
+
     public String getAuthor() {
         return author;
     }
+
     public void setAuthor(String author) {
         this.author = author;
     }
+
     public UUID getProvider() {
         return provider;
     }
+
     public void setProvider(UUID provider) {
         this.provider = provider;
     }
+
     public String getDifficulty() {
         return difficulty;
     }
+
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
+
     public Double getPreparationTimeInMinutes() {
         return preparationTimeInMinutes;
     }
+
     public void setPreparationTimeInMinutes(Double preparationTimeInMinutes) {
         this.preparationTimeInMinutes = preparationTimeInMinutes;
     }
 
-    public Recipe build(){
+    public Recipe build() {
         Recipe recipe = ImmutableRecipe
                 .builder()
                 .id(getId())

@@ -18,7 +18,7 @@ public class SickHealthIndicator extends AbstractHealthIndicator {
 
     @Override
     protected void doHealthCheck(Health.Builder builder) throws Exception {
-        if(!shouldToReportSick()){
+        if (!shouldToReportSick()) {
             builder.up();
         } else {
             builder.down();

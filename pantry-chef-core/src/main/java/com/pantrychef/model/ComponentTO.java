@@ -1,20 +1,15 @@
 package com.pantrychef.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-@Entity(name="components")
+@Entity(name = "components")
 @Inheritance
 @DiscriminatorColumn(name = "TYPE")
 public class ComponentTO extends BaseTO {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -2493265831622475549L;
 
@@ -26,6 +21,7 @@ public class ComponentTO extends BaseTO {
 
     private String qualifier;
 
+    @Column(name = "order_in_recipe")
     private Integer orderInRecipe;
 
     public ComponentTO(BigDecimal quantity, MeasureTO measure, String qualifier, Integer orderInRecipe) {
