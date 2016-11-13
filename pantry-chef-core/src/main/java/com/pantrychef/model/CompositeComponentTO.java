@@ -17,4 +17,28 @@ public class CompositeComponentTO extends ComponentTO {
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private RecipeTO recipeTO;
+    
+    public RecipeTO getRecipeTO() {
+        return recipeTO;
+    }
+
+
+
+    public void setRecipeTO(RecipeTO recipeTO) {
+        this.recipeTO = recipeTO;
+    }
+
+    public CompositeComponent build(){
+        CompositeComponent component = ImmutableCompositeComponent
+                .builder()
+                .id(getId())
+                .createdTimestamp(getCreatedTimestamp())
+                .lastUpdated(getLastUpdated())
+                .measure(getMeasure().build())
+                .order(getOrderInRecipe())
+                .qualifier(getQualifier())
+                .recipe(recipeTO.build())
+                .build();
+        return component;
+    }
 }

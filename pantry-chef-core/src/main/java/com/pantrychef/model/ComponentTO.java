@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @Entity(name = "components")
 @Inheritance
 @DiscriminatorColumn(name = "TYPE")
-public class ComponentTO extends BaseTO {
+public abstract class ComponentTO extends BaseTO {
 
     /**
      *
@@ -66,4 +66,5 @@ public class ComponentTO extends BaseTO {
     public void setOrderInRecipe(Integer orderInRecipe) {
         this.orderInRecipe = orderInRecipe;
     }
+    
 }

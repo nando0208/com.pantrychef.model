@@ -11,6 +11,7 @@ public class MeasureTO extends BaseTO {
     String code;
     private String name;
     private String abbreviation;
+    private String code;
 
     public MeasureTO(String name, String abbreviation, String code) {
         this.name = name;
@@ -43,5 +44,18 @@ public class MeasureTO extends BaseTO {
 
     public void setCode(String code) {
         this.code = code;
+    }
+    
+    public Measure build(){
+        Measure measure = ImmutableMeasure
+                .builder()
+                .id(getId())
+                .createdTimestamp(getCreatedTimestamp())
+                .lastUpdated(getLastUpdated())
+                .abbreviation(getAbbreviation())
+                .code(getCode())
+                .name(getName())
+                .build();
+        return measure;
     }
 }

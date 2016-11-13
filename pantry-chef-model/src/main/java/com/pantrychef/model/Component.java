@@ -12,7 +12,7 @@ public abstract class Component extends Base {
 
 	abstract BigDecimal quantity();
 	abstract Measure measure();
-	abstract List<String> qualifiers();
+	abstract String qualifier();
 	abstract List<Substitute> substitutes();
 	abstract Integer order();
 	abstract String name();
