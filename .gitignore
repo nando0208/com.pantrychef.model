@@ -12,11 +12,6 @@
 hs_err_pid*
 
 .project
-.settings/*
-*/target/*
-*/target
 target
-pantry-chef-model/src/main/java/com/pantrychef/model/model.ucls
-
 .idea
 *.iml
