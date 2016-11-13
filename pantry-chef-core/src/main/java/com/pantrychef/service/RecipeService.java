@@ -2,6 +2,7 @@ package com.pantrychef.service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,15 @@ public class RecipeService {
 	
 	private RecipeTO get(UUID id){
 		return repository.findOne(id);
+	}
+	
+	public List<Recipe> findByComponents(List<UUID> components){
+		List<UUID> recipeIds = componentService.findRecipes(components);
+		List<Recipe> recipes = recipeIds
+				.stream()
+				.map(id -> get(id).build())
+				.collect(Collectors.toList());
+		return recipes;
 	}
 	
 	public Recipe fetch(UUID id){
