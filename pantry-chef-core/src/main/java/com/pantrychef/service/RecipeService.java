@@ -36,7 +36,7 @@ public class RecipeService {
 	
 	/**
 	 * 
-	 * @return Recipes without ingredients/instructions
+	 * @return Recipes without components/instructions based on components criteria
 	 */
 	public List<Recipe> findByComponents(List<UUID> components){
 		List<UUID> recipeIds = componentService.findRecipes(components);
@@ -47,6 +47,10 @@ public class RecipeService {
 		return recipes;
 	}
 	
+	/**
+	 * 
+	 * @return Recipe without components/instructions
+	 */
 	public Recipe getSimpleRecipe(UUID id){
 		Recipe recipe = fetch(id).build();
 		return recipe;
