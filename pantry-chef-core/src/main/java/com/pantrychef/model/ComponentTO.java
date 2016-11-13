@@ -1,13 +1,22 @@
 package com.pantrychef.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="components")
 @Inheritance
 @DiscriminatorColumn(name = "TYPE")
 public class ComponentTO extends BaseTO {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2493265831622475549L;
 
     private BigDecimal quantity;
 

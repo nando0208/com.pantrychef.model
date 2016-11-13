@@ -6,7 +6,12 @@ import javax.persistence.*;
 @DiscriminatorValue("COMPOSITE")
 public class CompositeComponentTO extends ComponentTO {
 
-  @ManyToOne
-  @JoinColumn(name = "recipe_id")
-  private RecipeTO recipeTO;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5835363539426017623L;
+    
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private RecipeTO recipeTO;
 }
