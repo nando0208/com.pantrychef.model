@@ -32,6 +32,7 @@ public abstract class ComponentTO extends BaseTO {
     }
 
     public ComponentTO() {
+        
 
     }
 

@@ -22,8 +22,6 @@ public class CompositeComponentTO extends ComponentTO {
         return recipeTO;
     }
 
-
-
     public void setRecipeTO(RecipeTO recipeTO) {
         this.recipeTO = recipeTO;
     }
@@ -37,7 +35,7 @@ public class CompositeComponentTO extends ComponentTO {
                 .measure(getMeasure().build())
                 .order(getOrderInRecipe())
                 .qualifier(getQualifier())
-                .recipe(recipeTO.build())
+                .recipe(getRecipeTO().build())
                 .build();
         return component;
     }

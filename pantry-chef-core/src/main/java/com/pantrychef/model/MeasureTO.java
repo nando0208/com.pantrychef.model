@@ -8,7 +8,6 @@ public class MeasureTO extends BaseTO {
      *
      */
     private static final long serialVersionUID = -596205517167777773L;
-    String code;
     private String name;
     private String abbreviation;
     private String code;
@@ -19,7 +18,13 @@ public class MeasureTO extends BaseTO {
         this.code = code;
     }
 
-    public MeasureTO() {
+    public MeasureTO(Measure measure) {
+        setAbbreviation(measure.abbreviation());
+        setCode(measure.code());
+        setCreatedTimestamp(measure.createdTimestamp());
+        setId(measure.id());
+        setLastUpdated(measure.lastUpdated());
+        setName(measure.name());
     }
 
     public String getName() {

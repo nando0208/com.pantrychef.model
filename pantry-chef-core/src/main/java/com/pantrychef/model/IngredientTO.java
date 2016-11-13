@@ -1,11 +1,6 @@
 package com.pantrychef.model;
 
-import com.pantrychef.utils.Mapper;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.util.List;
-import java.util.UUID;
 
 @Entity(name = "ingredients")
 public class IngredientTO extends BaseTO {
@@ -18,11 +13,17 @@ public class IngredientTO extends BaseTO {
     private String name;
     private String description;
     private String about;
-    @Column(name = "main_tag")
-    private UUID mainTag;
-
-    @Column
-    private String tags;
+    private String tag;
+    
+    public IngredientTO(Ingredient ingredient){
+        setAbout(ingredient.about());
+        setCreatedTimestamp(ingredient.createdTimestamp());
+        setDescription(ingredient.description());
+        setId(ingredient.id());
+        setLastUpdated(ingredient.lastUpdated());
+        setName(ingredient.name());
+        setTag(ingredient.tag());
+    }
 
     public String getName() {
         return name;
@@ -48,11 +49,25 @@ public class IngredientTO extends BaseTO {
         this.about = about;
     }
 
-    public List<UUID> getTags() {
-        return Mapper.getInstance().readUUIDList(tags);
+    public String getTag() {
+        return tag;
     }
 
-    public void setTags(List<UUID> tags) {
-        this.tags = Mapper.getInstance().write(tags);
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Ingredient build(){
+        Ingredient ingredient = ImmutableIngredient
+                .builder()
+                .id(getId())
+                .createdTimestamp(getCreatedTimestamp())
+                .lastUpdated(getLastUpdated())
+                .about(getAbout())
+                .description(getDescription())
+                .name(getName())
+                .tag(getTag())
+                .build();
+        return ingredient;
     }
 }
