@@ -20,7 +20,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.eam.core.dao")
+@EnableJpaRepositories(basePackages = "com.pantrychef.repository")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class JPAConfiguration {
 	
@@ -53,7 +53,7 @@ public class JPAConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("com.eam.core.model");
+		entityManagerFactoryBean.setPackagesToScan("com.pantrychef.model");
 		entityManagerFactoryBean.setJpaProperties(buildHibernateProperties());
 		entityManagerFactoryBean.setJpaProperties(new Properties() {
 			private static final long serialVersionUID = 1L;
