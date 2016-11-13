@@ -34,6 +34,10 @@ public class RecipeService {
 		return repository.findOne(id);
 	}
 	
+	private RecipeTO persist(RecipeTO recipeTO){
+		return repository.save(recipeTO);
+	}
+	
 	/**
 	 * 
 	 * @return Recipes without components/instructions based on components criteria
@@ -54,6 +58,12 @@ public class RecipeService {
 	public Recipe getSimpleRecipe(UUID id){
 		Recipe recipe = fetch(id).build();
 		return recipe;
+	}
+	
+	public Recipe save(Recipe recipe){
+		RecipeTO recipeTO = new RecipeTO(recipe);
+		recipeTO = persist(recipeTO);
+		return recipeTO.build();
 	}
 	
 	public Recipe get(UUID id){

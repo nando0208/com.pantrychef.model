@@ -25,6 +25,21 @@ public class RecipeTO extends BaseTO {
 	private String author;
 	private UUID provider;
 	
+	//TODO handle provider
+	public RecipeTO(Recipe recipe){
+		setId(recipe.id());
+		setCreatedTimestamp(recipe.createdTimestamp());
+		setLastUpdated(recipe.lastUpdated());
+		setName(recipe.name());
+		setDescription(recipe.description());
+		setAbout(recipe.about());
+		setYeld(recipe.yeld());
+		setDifficulty(recipe.difficulty());
+		setPreparationTimeInMinutes(recipe.preparationTime().doubleValue());
+		setAuthor(recipe.author());
+		setProvider(null);
+	}
+	
 	public String getName() {
 		return name;
 	}
