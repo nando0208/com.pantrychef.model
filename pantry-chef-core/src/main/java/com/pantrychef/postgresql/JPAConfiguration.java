@@ -77,7 +77,7 @@ public class JPAConfiguration {
 		hibernateProperties.setProperty("hibernate.use_sql_comments", "false");
 		hibernateProperties.setProperty("hibernate.format_sql", "false");
 
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
 		hibernateProperties.setProperty("hibernate.generate_statistics", "false");
 		hibernateProperties.setProperty("javax.persistence.validation.mode", "none");
 		hibernateProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
