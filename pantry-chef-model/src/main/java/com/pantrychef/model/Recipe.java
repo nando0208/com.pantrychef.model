@@ -22,4 +22,5 @@ public abstract class Recipe extends Base {
 	abstract BigDecimal preparationTime();
 	abstract TimeUnit unit();
 	abstract String author();
+	abstract List<Instruction> instructions();
 }
