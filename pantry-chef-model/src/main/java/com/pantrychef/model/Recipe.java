@@ -23,4 +23,5 @@ public abstract class Recipe extends Base {
 	abstract TimeUnit unit();
 	abstract String author();
 	abstract List<Instruction> instructions();
+	abstract String difficulty();
 }

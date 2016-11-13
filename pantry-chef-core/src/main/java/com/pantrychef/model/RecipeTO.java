@@ -87,6 +87,7 @@ public class RecipeTO extends BaseTO {
 				.lastUpdated(getLastUpdated())
 				.createdTimestamp(getCreatedTimestamp())
 				.unit(TimeUnit.MINUTES)
+				.difficulty(getDifficulty())
 				.build();
 		return recipe;
 	}

@@ -42,7 +42,7 @@ public class JPAConfiguration {
 		dataSource.setJdbcUrl(databaseUrl);
 		dataSource.setMaximumPoolSize(10);
 		dataSource.setMinimumIdle(10);
-		dataSource.setPoolName("eam-core-pool");
+		dataSource.setPoolName("pantrychef-core-pool");
 		dataSource.setConnectionTimeout(20000);
 		dataSource.setLeakDetectionThreshold(10000);		
 		//dataSource.setMetricRegistry(metricRegistry);
