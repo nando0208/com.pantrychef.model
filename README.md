@@ -1,2 +1,2 @@
-# com.pantrychef.model
+# Pantry Chef
 Surprise!
